@@ -31,14 +31,16 @@ fn interact<T: SerialPort>(port: &mut T) -> io::Result<()> {
         let count = match port.read(&mut buf)
         {
             Ok(v) => v,
-            Err(e) => 
+            Err(_e) => 
             {
+                // likely timed out
                 continue;
             },
         };
         let s = String::from_utf8_lossy(&buf[0..count]);
+       
         print!("{}", s);
-        io::stdout().flush();
+        io::stdout().flush().unwrap();
    }
     Ok(())
 }
