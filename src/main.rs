@@ -24,7 +24,7 @@ fn interact<T: SerialPort>(port: &mut T) -> io::Result<()> {
         Ok(())
     })?;
 
-    port.set_timeout(Duration::from_millis(1000))?;
+    port.set_timeout(Duration::from_millis(10))?;
     loop
     {
         let mut buf: Vec<u8> = (0..255).collect();
@@ -33,7 +33,6 @@ fn interact<T: SerialPort>(port: &mut T) -> io::Result<()> {
             Ok(v) => v,
             Err(e) => 
             {
-                println!("{}", e);
                 continue;
             },
         };
@@ -73,8 +72,8 @@ fn interact<T: SerialPort>(port: &mut T) -> io::Result<()> {
                 }
             }
         }
-        
-        println!("{}", out);
+        print!("{}", out);
+        io::stdout().flush();
     }
     Ok(())
 }
