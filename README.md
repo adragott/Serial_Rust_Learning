@@ -1,3 +1,3 @@
 # Penguin's Serial Rust Try
 
-I'm trying to simply read some serial data from a GPS on a linux machine. God damn rust is difficult.
+In this project, I simply read serial data from a com port in rust. This will evolve into an adafruit ultimate gps crate eventually.
